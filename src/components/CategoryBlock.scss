@@ -1,0 +1,13 @@
+.category-block {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-left: 50px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

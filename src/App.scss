@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: grid;
+  grid-template-areas:
+  "header header"
+  "resumeBuilder resumeBuilder";
+  grid-template-rows: 1fr 4fr;
+  grid-template-columns: 1fr 1fr;
+}

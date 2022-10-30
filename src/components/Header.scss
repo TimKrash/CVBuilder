@@ -1,0 +1,14 @@
+$header-color: #ECC8AF;
+
+.header {
+  grid-area: header;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 200px;
+  padding: 10px;
+  font-size: 25px;
+  text-align: center;
+  background-color: $header-color;
+}
