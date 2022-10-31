@@ -3,7 +3,8 @@ import React from "react";
 import InformationEntry from "./InformationEntry";
 
 function CategoryBlock(props) {
-  const { name, entries, isLastEntry, addNewEntry } = props;
+  const { name, entries, isLastEntry, addNewEntry, deleteEntry } = props;
+  const { id } = entries;
 
   return (
     <div className="category-block">
@@ -30,10 +31,14 @@ function CategoryBlock(props) {
               <button type="button" onClick={addNewEntry}>
                 Add
               </button>
-              <button type="button">Delete</button>
+              <button type="button" data-id={id} onClick={deleteEntry}>
+                Delete
+              </button>
             </div>
           ) : (
-            <button type="button">Delete</button>
+            <button type="button" data-id={id} onClick={deleteEntry}>
+              Delete
+            </button>
           ))}
       </form>
     </div>

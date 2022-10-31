@@ -9,6 +9,8 @@ export default function UserInfo(props) {
     educationHistory,
     addExperience,
     addEducation,
+    deleteEducation,
+    deleteExperience,
   } = props;
 
   const [employmentCount, setEmploymentCount] = useState(
@@ -18,7 +20,7 @@ export default function UserInfo(props) {
 
   const addNewExperience = useCallback(() => {
     const newExperience = {
-      id: employmentCount,
+      id: employmentCount + 1,
       Employer: "",
       From: "",
       To: "",
@@ -30,9 +32,15 @@ export default function UserInfo(props) {
     setEmploymentCount(employmentCount + 1);
   });
 
+  const deleteEmployment = useCallback((event) => {
+    const { id } = event.target.dataset;
+    deleteExperience(id);
+    setEmploymentCount(employmentCount - 1);
+  });
+
   const addNewEducation = useCallback(() => {
     const newEducation = {
-      id: educationCount,
+      id: educationCount + 1,
       School: "",
       From: "",
       To: "",
@@ -43,6 +51,12 @@ export default function UserInfo(props) {
 
     addEducation(newEducation);
     setEducationCount(educationCount + 1);
+  });
+
+  const deleteSchool = useCallback((event) => {
+    const { id } = event.target.dataset;
+    deleteEducation(id);
+    setEducationCount(educationCount - 1);
   });
 
   let isLastEmployment = false;
@@ -64,6 +78,7 @@ export default function UserInfo(props) {
             entries={employer}
             isLastEntry={isLastEmployment}
             addNewEntry={addNewExperience}
+            deleteEntry={deleteEmployment}
           />
         );
       })}
@@ -78,6 +93,7 @@ export default function UserInfo(props) {
             entries={education}
             isLastEntry={isLastEducation}
             addNewEntry={addNewEducation}
+            deleteEntry={deleteSchool}
           />
         );
       })}

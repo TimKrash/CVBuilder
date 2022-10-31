@@ -11,7 +11,8 @@ export default function Details(props) {
           if (
             key === "Description" ||
             key === "First Name" ||
-            key === "Last Name"
+            key === "Last Name" ||
+            key === "id"
           ) {
             return false;
           }

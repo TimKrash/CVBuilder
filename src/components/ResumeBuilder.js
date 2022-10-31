@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import update from "immutability-helper";
 import UserInfo from "./UserInfo";
 import ResumeTemplate from "./ResumeTemplate";
 import "./ResumeBuilder.scss";
@@ -61,12 +62,36 @@ export default class ResumeBuilder extends Component {
 
     this.addExperience = this.addExperience.bind(this);
     this.addEducation = this.addEducation.bind(this);
+    this.deleteExperience = this.deleteExperience.bind(this);
+    this.deleteEducation = this.deleteEducation.bind(this);
+  }
+
+  deleteExperience(id) {
+    this.setState((prevState) => {
+      const idx = prevState.employmentHistory.findIndex((e) => e.id === id);
+      return {
+        employmentHistory: update(prevState.employmentHistory, {
+          $splice: [[idx, 1]],
+        }),
+      };
+    });
   }
 
   addExperience(experience) {
     this.setState((prevState) => ({
       employmentHistory: prevState.employmentHistory.concat(experience),
     }));
+  }
+
+  deleteEducation(id) {
+    this.setState((prevState) => {
+      const idx = prevState.educationHistory.findIndex((e) => e.id === id);
+      return {
+        educationHistory: update(prevState.educationHistory, {
+          $splice: [[idx, 1]],
+        }),
+      };
+    });
   }
 
   addEducation(education) {
@@ -85,6 +110,8 @@ export default class ResumeBuilder extends Component {
           employmentHistory={employmentHistory}
           addExperience={this.addExperience}
           addEducation={this.addEducation}
+          deleteExperience={this.deleteExperience}
+          deleteEducation={this.deleteEducation}
         />
         <ResumeTemplate
           details={details}
