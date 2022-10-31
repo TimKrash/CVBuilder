@@ -64,6 +64,28 @@ export default class ResumeBuilder extends Component {
     this.addEducation = this.addEducation.bind(this);
     this.deleteExperience = this.deleteExperience.bind(this);
     this.deleteEducation = this.deleteEducation.bind(this);
+    this.addTask = this.addTask.bind(this);
+  }
+
+  addTask(id, task) {
+    const parsedID = parseInt(id, 10);
+    this.setState((prevState) => {
+      const idx = prevState.employmentHistory.findIndex(
+        (e) => e.id === parsedID
+      );
+      const updatedTasks = update(prevState.employmentHistory[idx].Tasks, {
+        $push: [task],
+      });
+      const employmentWithNewTask = {
+        ...prevState.employmentHistory[idx],
+      };
+      employmentWithNewTask.Tasks = updatedTasks;
+      return {
+        employmentHistory: update(prevState.employmentHistory, {
+          $splice: [[idx, 1, employmentWithNewTask]],
+        }),
+      };
+    });
   }
 
   deleteExperience(id) {
@@ -112,6 +134,7 @@ export default class ResumeBuilder extends Component {
           addEducation={this.addEducation}
           deleteExperience={this.deleteExperience}
           deleteEducation={this.deleteEducation}
+          addTask={this.addTask}
         />
         <ResumeTemplate
           details={details}

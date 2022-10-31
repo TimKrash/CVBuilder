@@ -1,5 +1,6 @@
 .category-block {
   width: 85%;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,5 +23,30 @@
     align-items: center;
     gap: 10px;
     width: 85%;
+
+    button.delete {
+      all: unset;
+      color: red;
+      font-size: 30px;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      cursor: pointer;
+    }
+
+    button.add {
+      all: unset;
+      padding: 8px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      width: 100px;
+      text-align: center;
+      background-color: palegreen;
+      cursor: pointer;
+    }
+
+    button.add:hover {
+      background-color: green;
+    }
   }
 }
