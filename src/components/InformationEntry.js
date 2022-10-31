@@ -1,14 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import "./InformationEntry.scss";
 
-export default class InformationEntry extends Component {
-  constructor(props) {
-    super(props);
-  }
+function InformationEntry(props) {
+  const { placeholder, value } = props;
 
-  render() {
-    const { placeholder, value } = this.props;
-
-    return <input type="text" placeholder={placeholder} defaultValue={value} />;
-  }
+  return <input type="text" placeholder={placeholder} defaultValue={value} />;
 }
+
+export default InformationEntry;
