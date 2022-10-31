@@ -62,30 +62,57 @@ export default function UserInfo(props) {
   let isLastEmployment = false;
   let isLastEducation = false;
 
+  const noEmploymentEntries = employmentCount === 0;
+  const noEducationEntries = educationCount === 0;
+
   return (
     <div className="user-info">
       {details.map((detail) => (
         <CategoryBlock key={detail.id} name="Personal Info" entries={detail} />
       ))}
+      {noEmploymentEntries === true && (
+        <CategoryBlock
+          name="Experience"
+          noEntries={noEmploymentEntries}
+          entries={{}}
+          isLastEntry={null}
+          deleteEntry={null}
+          addNewEntry={addNewExperience}
+        />
+      )}
       {employmentHistory.map((employer, idx) => {
         if (idx === employmentHistory.length - 1) {
           isLastEmployment = true;
         }
+
         return (
           <CategoryBlock
             key={employer.id}
             name="Experience"
             entries={employer}
             isLastEntry={isLastEmployment}
+            noEntries={noEmploymentEntries}
             addNewEntry={addNewExperience}
             deleteEntry={deleteEmployment}
           />
         );
       })}
+      {noEducationEntries === true && (
+        <CategoryBlock
+          name="Education"
+          noEntries={noEducationEntries}
+          entries={{}}
+          isLastEntry={null}
+          deleteEntry={null}
+          addNewEntry={addNewEducation}
+        />
+      )}
+
       {educationHistory.map((education, idx) => {
         if (idx === educationHistory.length - 1) {
           isLastEducation = true;
         }
+
         return (
           <CategoryBlock
             key={education.id}
@@ -94,6 +121,7 @@ export default function UserInfo(props) {
             isLastEntry={isLastEducation}
             addNewEntry={addNewEducation}
             deleteEntry={deleteSchool}
+            noEntries={noEducationEntries}
           />
         );
       })}

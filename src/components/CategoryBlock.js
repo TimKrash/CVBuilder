@@ -3,13 +3,20 @@ import React from "react";
 import InformationEntry from "./InformationEntry";
 
 function CategoryBlock(props) {
-  const { name, entries, isLastEntry, addNewEntry, deleteEntry } = props;
-  const { id } = entries;
+  const { name, entries, isLastEntry, addNewEntry, deleteEntry, noEntries } =
+    props;
+  const { id } = entries || {};
+  console.log(props);
 
   return (
     <div className="category-block">
       <h1>{name}</h1>
       <form className="category-block-list" id={`${name}-form`}>
+        {noEntries === true && !isLastEntry && (
+          <button type="button" onClick={addNewEntry}>
+            Add
+          </button>
+        )}
         {Object.keys(entries)
           .filter((key) => {
             if (key === "id") {
@@ -26,6 +33,7 @@ function CategoryBlock(props) {
           ))}
         {isLastEntry !== null &&
           isLastEntry !== undefined &&
+          noEntries === false &&
           (isLastEntry ? (
             <div className="buttons">
               <button type="button" onClick={addNewEntry}>
