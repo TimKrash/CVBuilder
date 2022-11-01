@@ -24,7 +24,9 @@ export default function UserInfo(props) {
   const addNewExperience = useCallback(() => {
     const newExperience = {
       id: employmentCount + 1,
+      "Job Title": "",
       Employer: "",
+      Location: "",
       From: "",
       To: "",
       Tasks: [
@@ -33,7 +35,6 @@ export default function UserInfo(props) {
           text: "",
         },
       ],
-      Location: "",
     };
 
     addExperience(newExperience);
@@ -49,11 +50,11 @@ export default function UserInfo(props) {
   const addNewEducation = useCallback(() => {
     const newEducation = {
       id: educationCount + 1,
+      Degree: "",
       School: "",
+      Location: "",
       From: "",
       To: "",
-      Degree: "",
-      Location: "",
     };
 
     addEducation(newEducation);

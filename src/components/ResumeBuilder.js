@@ -12,44 +12,33 @@ export default class ResumeBuilder extends Component {
       details: [
         {
           id: 1,
-          "First Name": "Tim",
-          "Last Name": "Krashevsky",
-          "Phone Number": "(224)-723-2355",
-          Address: "816 N Leavitt, #3F",
-          "Email Address": "tim.krashevsky@gmail.com",
-          Description: `
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          `,
+          "First Name": "",
+          "Last Name": "",
+          "Phone Number": "",
+          Address: "",
+          "Email Address": "",
+          Description: "",
         },
       ],
       educationHistory: [
         {
           id: 1,
-          School: "University of Illinois at Urbana-Champaign",
-          From: "August 2017",
-          To: "May 2021",
-          Degree: "B.S. Aerospace Engineering",
-          Location: "Champaign",
+          Degree: "",
+          School: "",
+          Location: "",
+          From: "",
+          To: "",
         },
       ],
       employmentHistory: [
         {
           id: 1,
-          Employer: "Connamara",
-          From: "2020-09-01",
-          To: "Present",
-          "Job Title": "Software Engineer",
-          Tasks: [
-            {
-              id: 1,
-              text: "Managed software stack and did stuff",
-            },
-            {
-              id: 2,
-              text: "Also did some other stuff too!",
-            },
-          ],
-          Location: "Chicago",
+          "Job Title": "",
+          Employer: "",
+          Location: "",
+          From: "",
+          To: "",
+          Tasks: [{ id: 1, text: "" }],
         },
       ],
     };
