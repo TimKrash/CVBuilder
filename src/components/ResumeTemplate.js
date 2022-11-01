@@ -5,13 +5,14 @@ import EmploymentHistory from "./EmploymentHistory";
 import EducationHistory from "./EducationHistory";
 import avatar from "../assets/blank-avatar.png";
 
-export default function ResumeTemplate(props) {
+const ResumeTemplate = React.forwardRef((props, ref) => {
   const { details, employmentHistory, educationHistory } = props;
   const name = `${details[0]["First Name"]} ${details[0]["Last Name"]}`;
   const description = details[0].Description;
+  console.log(ref);
 
   return (
-    <div className="resume-template">
+    <div ref={ref} className="resume-template">
       <div className="container-left">
         <img src={avatar} width="50" height="50" alt="Avatar.png" />
         <div className="name">{name}</div>
@@ -47,4 +48,6 @@ export default function ResumeTemplate(props) {
       </div>
     </div>
   );
-}
+});
+
+export default ResumeTemplate;

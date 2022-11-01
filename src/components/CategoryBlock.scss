@@ -3,6 +3,43 @@ $add-color: #03C03C;
 $remove-hover: #AA0000;
 $add-hover: #228B22;
 
+.generate-pdf, .generate-sample, .reset-forms {
+  all: unset;
+  width: 85%;
+  margin-left: 50px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: white;
+  padding: 8px;
+}
+
+.generate-pdf {
+  background-color: $add-color;
+}
+
+.generate-pdf:hover {
+  background-color: $add-hover;
+}
+
+.generate-sample {
+  background-color: #E3963E;
+}
+
+.generate-sample:hover {
+  background-color: #CC5500;
+}
+
+.reset-forms {
+  background-color: $remove-color;
+}
+
+.reset-forms:hover {
+  background-color: $remove-hover;
+}
+
 .category-block {
   width: 85%;
   position: relative;

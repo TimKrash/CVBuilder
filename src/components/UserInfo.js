@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import ReactToPrint from "react-to-print";
 import "./UserInfo.scss";
 import CategoryBlock from "./CategoryBlock";
 
@@ -14,6 +15,9 @@ export default function UserInfo(props) {
     deleteEducation,
     deleteExperience,
     handleChange,
+    toPrint,
+    loadExample,
+    resetFields,
   } = props;
 
   const [employmentCount, setEmploymentCount] = useState(
@@ -146,6 +150,21 @@ export default function UserInfo(props) {
           />
         );
       })}
+
+      <ReactToPrint
+        trigger={() => (
+          <button type="button" className="generate-pdf">
+            Generate PDF
+          </button>
+        )}
+        content={() => toPrint || console.log("Generate values first!")}
+      />
+      <button type="button" className="generate-sample" onClick={loadExample}>
+        Load Example
+      </button>
+      <button type="button" className="reset-forms" onClick={resetFields}>
+        Reset
+      </button>
     </div>
   );
 }
