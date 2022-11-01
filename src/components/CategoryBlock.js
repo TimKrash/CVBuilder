@@ -9,6 +9,7 @@ function CategoryBlock(props) {
     entries,
     isLastEntry,
     addTask,
+    removeTask,
     addNewEntry,
     deleteEntry,
     noEntries,
@@ -24,10 +25,28 @@ function CategoryBlock(props) {
       text: "",
     };
 
-    const employmentID = event.target.dataset.id;
+    let { target } = event;
+    while (target.tagName !== "BUTTON") {
+      target = target.parentElement;
+    }
+
+    // todo cluttered a bit
+    const employmentID = target.dataset.parent;
 
     addTask(employmentID, newTask);
     setTaskCount(taskCount + 1);
+  });
+
+  const removeNewTask = useCallback((event) => {
+    let { target } = event;
+    while (target.tagName !== "BUTTON") {
+      target = target.parentElement;
+    }
+
+    const employmentID = target.dataset.parent;
+    const taskID = target.dataset.id;
+
+    removeTask(employmentID, taskID);
   });
 
   return (
@@ -48,16 +67,18 @@ function CategoryBlock(props) {
           })
           .map((key) => {
             if (key === "Tasks") {
-              return entries[key].map((task) => {
-                const isFirstTask = task.id === 1;
-                const isLastTask = task.id === entries.Tasks.length;
+              return entries[key].map((task, idx) => {
+                const isFirstTask = idx === 0;
+                const isLastTask = idx === entries.Tasks.length - 1;
                 return (
                   <InformationEntry
                     key={`Task_${task.id}`}
                     placeholder="Task"
                     value={task.text}
                     parentID={id}
+                    taskID={task.id}
                     addTask={addNewTask}
+                    removeTask={removeNewTask}
                     isLastTask={isLastTask}
                     isFirstTask={isFirstTask}
                   />
@@ -70,7 +91,8 @@ function CategoryBlock(props) {
                 placeholder={key}
                 value={entries[key]}
                 parentID={null}
-                addTask={null}
+                taskID={null}
+                addTask={addNewTask}
               />
             );
           })}

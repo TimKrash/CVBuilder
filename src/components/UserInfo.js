@@ -10,6 +10,7 @@ export default function UserInfo(props) {
     addExperience,
     addEducation,
     addTask,
+    removeTask,
     deleteEducation,
     deleteExperience,
   } = props;
@@ -25,7 +26,7 @@ export default function UserInfo(props) {
       Employer: "",
       From: "",
       To: "",
-      Tasks: [],
+      Tasks: [{}],
       Location: "",
     };
 
@@ -80,6 +81,7 @@ export default function UserInfo(props) {
           deleteEntry={null}
           addNewEntry={addNewExperience}
           addTask={null}
+          removeTask={null}
         />
       )}
       {employmentHistory.map((employer, idx) => {
@@ -97,6 +99,7 @@ export default function UserInfo(props) {
             addNewEntry={addNewExperience}
             deleteEntry={deleteEmployment}
             addTask={addTask}
+            removeTask={removeTask}
           />
         );
       })}

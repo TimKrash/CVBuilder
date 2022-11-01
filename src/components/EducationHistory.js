@@ -12,11 +12,6 @@ export default function EducationHistory(props) {
         <div className="education-entry-subheader">
           {education.From} - {education.To}
         </div>
-        <ul>
-          {education.Notes.map((note) => (
-            <li key={`${Date.now()}_${note.id}`}>{note.text}</li>
-          ))}
-        </ul>
       </div>
     </div>
   );

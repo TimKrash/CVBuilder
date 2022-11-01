@@ -1,3 +1,8 @@
+$remove-color: #fd5c63;
+$add-color: #03C03C;
+$remove-hover: #AA0000;
+$add-hover: #228B22;
+
 .category-block {
   width: 85%;
   position: relative;
@@ -24,14 +29,53 @@
     gap: 10px;
     width: 85%;
 
+    .task-entry {
+      width: 98%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      gap: 8px;
+
+      input {
+        width: 100%;
+      }
+
+      button {
+        all: unset;
+      }
+
+      button.task-add {
+        color: $add-color;
+        cursor: pointer;
+      }
+
+      button.task-add:hover {
+        color: $add-hover;
+      }
+
+      button.task-delete {
+        color: $remove-color;
+        cursor: pointer;
+      }
+
+      button.task-delete:hover {
+        color: $remove-hover;
+      }
+    }
+
     button.delete {
       all: unset;
-      color: red;
+      color: $remove-color;
       font-size: 30px;
       position: absolute;
       right: 5px;
       top: 5px;
       cursor: pointer;
+    }
+
+    button.delete:hover {
+      color: $remove-hover;
     }
 
     button.add {
@@ -41,12 +85,12 @@
       border-radius: 10px;
       width: 100px;
       text-align: center;
-      background-color: palegreen;
+      background-color: $add-color;
       cursor: pointer;
     }
 
     button.add:hover {
-      background-color: green;
+      background-color: $add-hover;
     }
   }
 }

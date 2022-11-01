@@ -1,9 +1,18 @@
 import React from "react";
+import { IoMdRemoveCircle, IoIosAddCircle } from "react-icons/io";
 import "./InformationEntry.scss";
 
 function InformationEntry(props) {
-  const { addTask, isFirstTask, isLastTask, placeholder, value, parentID } =
-    props;
+  const {
+    addTask,
+    removeTask,
+    isFirstTask,
+    isLastTask,
+    placeholder,
+    value,
+    parentID,
+    taskID,
+  } = props;
 
   function renderTaskElement() {
     if (placeholder !== "Task") {
@@ -14,42 +23,56 @@ function InformationEntry(props) {
 
     if (isFirstTask && isLastTask) {
       return (
-        <div>
+        <div className="task-entry">
           <input type="text" placeholder={placeholder} defaultValue={value} />
           <button
             type="button"
-            data-id={parentID}
+            data-parent={parentID}
+            data-id={taskID}
             className="task-add"
             onClick={addTask}
           >
-            Add Task
+            <IoIosAddCircle />
           </button>
         </div>
       );
     }
     if (isLastTask) {
       return (
-        <div>
+        <div className="task-entry">
           <input type="text" placeholder={placeholder} defaultValue={value} />
           <button
             type="button"
-            data-id={parentID}
+            data-parent={parentID}
+            data-id={taskID}
             className="task-add"
             onClick={addTask}
           >
-            Add Task
+            <IoIosAddCircle />
           </button>
-          <button type="button" data-id={parentID} className="task-delete">
-            Remove Task
+          <button
+            type="button"
+            onClick={removeTask}
+            data-parent={parentID}
+            data-id={taskID}
+            className="task-delete"
+          >
+            <IoMdRemoveCircle />
           </button>
         </div>
       );
     }
     return (
-      <div>
+      <div className="task-entry">
         <input type="text" placeholder={placeholder} defaultValue={value} />
-        <button type="button" data-id={parentID} className="task-delete">
-          Remove Task
+        <button
+          type="button"
+          data-id={taskID}
+          data-parent={parentID}
+          onClick={removeTask}
+          className="task-delete"
+        >
+          <IoMdRemoveCircle />
         </button>
       </div>
     );

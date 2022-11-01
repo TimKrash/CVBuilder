@@ -30,12 +30,6 @@ export default class ResumeBuilder extends Component {
           To: "May 2021",
           Degree: "B.S. Aerospace Engineering",
           Location: "Champaign",
-          Notes: [
-            {
-              id: 1,
-              text: "Graduated with Honors",
-            },
-          ],
         },
       ],
       employmentHistory: [
@@ -65,6 +59,7 @@ export default class ResumeBuilder extends Component {
     this.deleteExperience = this.deleteExperience.bind(this);
     this.deleteEducation = this.deleteEducation.bind(this);
     this.addTask = this.addTask.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
 
   addTask(id, task) {
@@ -80,6 +75,34 @@ export default class ResumeBuilder extends Component {
         ...prevState.employmentHistory[idx],
       };
       employmentWithNewTask.Tasks = updatedTasks;
+      return {
+        employmentHistory: update(prevState.employmentHistory, {
+          $splice: [[idx, 1, employmentWithNewTask]],
+        }),
+      };
+    });
+  }
+
+  removeTask(employmentID, taskID) {
+    const parsedID = parseInt(employmentID, 10);
+    const parsedTaskID = parseInt(taskID, 10);
+    this.setState((prevState) => {
+      const idx = prevState.employmentHistory.findIndex(
+        (e) => e.id === parsedID
+      );
+      const taskIdx = prevState.employmentHistory[idx].Tasks.findIndex(
+        (e) => e.id === parsedTaskID
+      );
+
+      const updatedTasks = update(prevState.employmentHistory[idx].Tasks, {
+        $splice: [[taskIdx, 1]],
+      });
+
+      const employmentWithNewTask = {
+        ...prevState.employmentHistory[idx],
+      };
+      employmentWithNewTask.Tasks = updatedTasks;
+
       return {
         employmentHistory: update(prevState.employmentHistory, {
           $splice: [[idx, 1, employmentWithNewTask]],
@@ -135,6 +158,7 @@ export default class ResumeBuilder extends Component {
           deleteExperience={this.deleteExperience}
           deleteEducation={this.deleteEducation}
           addTask={this.addTask}
+          removeTask={this.removeTask}
         />
         <ResumeTemplate
           details={details}
