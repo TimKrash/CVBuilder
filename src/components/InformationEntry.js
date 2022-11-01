@@ -12,19 +12,33 @@ function InformationEntry(props) {
     value,
     parentID,
     taskID,
+    handleChange,
   } = props;
 
   function renderTaskElement() {
     if (placeholder !== "Task") {
       return (
-        <input type="text" placeholder={placeholder} defaultValue={value} />
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder={placeholder}
+          data-parent={parentID}
+          defaultValue={value}
+        />
       );
     }
 
     if (isFirstTask && isLastTask) {
       return (
         <div className="task-entry">
-          <input type="text" placeholder={placeholder} defaultValue={value} />
+          <input
+            type="text"
+            onChange={handleChange}
+            data-parent={parentID}
+            data-task={taskID}
+            placeholder={placeholder}
+            defaultValue={value}
+          />
           <button
             type="button"
             data-parent={parentID}
@@ -40,7 +54,14 @@ function InformationEntry(props) {
     if (isLastTask) {
       return (
         <div className="task-entry">
-          <input type="text" placeholder={placeholder} defaultValue={value} />
+          <input
+            type="text"
+            placeholder={placeholder}
+            onChange={handleChange}
+            data-parent={parentID}
+            data-task={taskID}
+            defaultValue={value}
+          />
           <button
             type="button"
             data-parent={parentID}
@@ -64,7 +85,14 @@ function InformationEntry(props) {
     }
     return (
       <div className="task-entry">
-        <input type="text" placeholder={placeholder} defaultValue={value} />
+        <input
+          type="text"
+          placeholder={placeholder}
+          data-parent={parentID}
+          data-task={taskID}
+          defaultValue={value}
+          onChange={handleChange}
+        />
         <button
           type="button"
           data-id={taskID}

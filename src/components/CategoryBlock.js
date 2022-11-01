@@ -13,6 +13,7 @@ function CategoryBlock(props) {
     addNewEntry,
     deleteEntry,
     noEntries,
+    handleChange,
   } = props;
   const { id } = entries || {};
 
@@ -49,6 +50,15 @@ function CategoryBlock(props) {
     removeTask(employmentID, taskID);
   });
 
+  const handleChangeCategory = useCallback((event) => {
+    const parentID = event.target.dataset.parent;
+    const key = event.target.placeholder;
+    const taskID = event.target.dataset.task;
+    const { value } = event.target;
+
+    handleChange(name, parentID, key, value, taskID);
+  });
+
   return (
     <div className="category-block">
       <h1>{name}</h1>
@@ -81,6 +91,7 @@ function CategoryBlock(props) {
                     removeTask={removeNewTask}
                     isLastTask={isLastTask}
                     isFirstTask={isFirstTask}
+                    handleChange={handleChangeCategory}
                   />
                 );
               });
@@ -90,9 +101,10 @@ function CategoryBlock(props) {
                 key={key}
                 placeholder={key}
                 value={entries[key]}
-                parentID={null}
+                parentID={id}
                 taskID={null}
                 addTask={addNewTask}
+                handleChange={handleChangeCategory}
               />
             );
           })}

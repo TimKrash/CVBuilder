@@ -13,6 +13,7 @@ export default function UserInfo(props) {
     removeTask,
     deleteEducation,
     deleteExperience,
+    handleChange,
   } = props;
 
   const [employmentCount, setEmploymentCount] = useState(
@@ -26,7 +27,12 @@ export default function UserInfo(props) {
       Employer: "",
       From: "",
       To: "",
-      Tasks: [{}],
+      Tasks: [
+        {
+          id: 1,
+          text: "",
+        },
+      ],
       Location: "",
     };
 
@@ -47,7 +53,6 @@ export default function UserInfo(props) {
       From: "",
       To: "",
       Degree: "",
-      Notes: [],
       Location: "",
     };
 
@@ -70,7 +75,12 @@ export default function UserInfo(props) {
   return (
     <div className="user-info">
       {details.map((detail) => (
-        <CategoryBlock key={detail.id} name="Personal Info" entries={detail} />
+        <CategoryBlock
+          handleChange={handleChange}
+          key={detail.id}
+          name="Personal Info"
+          entries={detail}
+        />
       ))}
       {noEmploymentEntries === true && (
         <CategoryBlock
@@ -80,8 +90,9 @@ export default function UserInfo(props) {
           isLastEntry={null}
           deleteEntry={null}
           addNewEntry={addNewExperience}
-          addTask={null}
-          removeTask={null}
+          addTask={addTask}
+          removeTask={removeTask}
+          handleChange={handleChange}
         />
       )}
       {employmentHistory.map((employer, idx) => {
@@ -100,6 +111,7 @@ export default function UserInfo(props) {
             deleteEntry={deleteEmployment}
             addTask={addTask}
             removeTask={removeTask}
+            handleChange={handleChange}
           />
         );
       })}
@@ -111,6 +123,7 @@ export default function UserInfo(props) {
           isLastEntry={null}
           deleteEntry={null}
           addNewEntry={addNewEducation}
+          handleChange={handleChange}
         />
       )}
 
@@ -128,6 +141,7 @@ export default function UserInfo(props) {
             addNewEntry={addNewEducation}
             deleteEntry={deleteSchool}
             noEntries={noEducationEntries}
+            handleChange={handleChange}
           />
         );
       })}
